@@ -1,0 +1,29 @@
+Ref():
+Es una funcion que ayuda a darle la propiedad de "reactividad" a una variable la cual puede ser un número, una cadena o un booleano. Dicha
+variable tiene una propiedad denominada .value, la cual permite leer o modificar el valor actual. 
+
+const count = ref(0)
+console.log(count.value) // 0
+
+count.value = 1
+console.log(count.value) // 1
+
+Reactive():
+Similar que ref() esta funciona proporciona reactividad objeto, siendo más preciso retorna un proxy reactivo del objeto. Esto significa
+que se crea una especie de envoltura sobre el objeto el cual interactura como una interfaz entre nuestro codigo y el objeto, este proxy
+se encargar de rastrear y actualizar los cambios en las propiedades del objeto. 
+
+const obj = reactive({ count: 0 })
+obj.count++
+console.log(obj.count) // 1
+
+Ref() vs Reactive():
+
+En resumen, las principales diferencias entre estas dos funciones son:
+
+- Lectura y escritura de valores: para acceder al valor de la variable con ref() utilizamos la propiedad ".value" mientras que con reactive()
+usamos el nombre de la propiedad dentro del objeto. 
+
+- Usabilidad: ref() funciona muy bien con variables simples y reactive() esta pensado más para objetos complejos que requieran reactividad. 
+
+

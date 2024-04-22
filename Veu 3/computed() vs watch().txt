@@ -1,0 +1,34 @@
+Computed():
+Permite realizar calculos de valores basados en variables reactivas, es decir si una variable reactiva realiza un cambio, computed puede
+actualizarse de manera automatica al detectar el cambio de dicha varaible. Por defecto computed asigna un valor de salida de solo lectura, 
+pero utilizando la propiedad "set:" se puede definar una varaible de escritura para modificar el valor de la variable trabajada.  
+
+- Solo lectura:
+const count = ref(1)
+const plusOne = computed(() => count.value + 1)
+
+console.log(plusOne.value) // 2
+
+count.value = 2;
+
+console.log(plusOne.value) //3
+
+- Lectura y escritura:
+const count = ref(1)
+const plusOne = computed({
+  get: () => count.value + 1,
+  set: (val) => {
+    count.value = val - 1
+  }
+})
+
+plusOne.value = 1
+console.log(count.value) // 0
+
+Watch():
+Es una funcion muy util en Vue, ya que permite realizar acciones en respuesta a cambios que pueda tener una variable reactiva. 
+
+const count = ref(0)
+watch(count, (count, prevCount) => {
+  console.log(`The value of count changes from ${prevCount} to ${count}`)
+})
