@@ -54,4 +54,34 @@
 
 //Ejemplo No. 3
 
+<script setup>
+import { ref, computed } from 'vue'
 
+const password = ref('');
+
+const isStrongPassword = computed(() => {
+  return password.value.length >= 8 && /[a-z]/.test(password.value) && /[A-Z]/.test(password.value) && /\d/.test(password.value);
+});
+
+const handlePassword = (event) =>{
+  password.value = event.target.value;
+};
+
+</script>
+
+<template>
+  <h2>Validador de contraseña</h2>
+  <form :style="{display:'flex', flexDirection:'column', width:'200px'}">
+    <p>Contraseña:</p>
+    <input 
+     type="text" 
+     placeholder="Ingresa tu contraseña" 
+     @input="handlePassword($event)"
+     v-model="password"
+    />
+    <button :style="{marginTop:'5px'}">Ingresar</button>
+    <p :style="{color: isStrongPassword ? 'green':'red', textAlign: 'center'}">
+      {{ isStrongPassword ? 'Contraseña segura' : 'Contraseña insegura'}}
+    </p>
+  </form>
+</template>
